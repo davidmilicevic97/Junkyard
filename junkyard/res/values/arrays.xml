@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="sort_locations_entries_array">
+        <item>@string/sortprefs_addressAscending</item>
+        <item>@string/sortprefs_addressDescending</item>
+        <item>@string/sortprefs_groupByType</item>
+    </string-array>
+    <string-array name="sort_locations_values_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    <string-array name="types">
+        <item>@string/type_all</item>
+        <item>@string/type_recycling</item>
+        <item>@string/type_school</item>
+        <item>@string/type_library</item>
+        <item>@string/type_museum</item>
+        <item>@string/type_sportsCentre</item>
+        <item>@string/type_restaurant</item>
+        <item>@string/type_bakery</item>
+        <item>@string/type_coffeeShop</item>
+        <item>@string/type_exchangeOffice</item>
+        <item>@string/type_photocopyShop</item>
+        <item>@string/type_shoppingCentre</item>
+        <item>@string/type_market</item>
+        <item>@string/type_pharmacy</item>
+        <item>@string/type_nightClub</item>
+    </string-array>
+    <string-array name="database_types">
+        <item>All</item>
+        <item>recycling</item>
+        <item>school</item>
+        <item>library</item>
+        <item>museum</item>
+        <item>sportsCentre</item>
+        <item>restaurant</item>
+        <item>bakery</item>
+        <item>coffeeShop</item>
+        <item>exchangeOffice</item>
+        <item>photocopyShop</item>
+        <item>shoppingCentre</item>
+        <item>market</item>
+        <item>pharmacy</item>
+        <item>nightClub</item>
+    </string-array>
+    <string-array name="led_preferences_entries_array">
+        <item>@string/ledprefs_green</item>
+        <item>@string/ledprefs_magneta</item>
+        <item>@string/ledprefs_blue</item>
+        <item>@string/ledprefs_orange</item>
+        <item>@string/ledprefs_yellow</item>
+        <item>@string/ledprefs_purple</item>
+        <item>@string/ledprefs_red</item>
+        <item>@string/ledprefs_cyan</item>
+    </string-array>
+    <string-array name="led_preferences_values_array">
+        <item>#ff00ff00</item>
+        <item>#ffff00ff</item>
+        <item>#ff0000ff</item>
+        <item>#ffffa500</item>
+        <item>#ffffff00</item>
+        <item>#ff800080</item>
+        <item>#ffff0000</item>
+        <item>#ff00ffff</item>
+    </string-array>
+
+</resources>

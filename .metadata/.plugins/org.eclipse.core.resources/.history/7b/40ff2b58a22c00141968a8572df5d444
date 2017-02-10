@@ -1,0 +1,21 @@
+package com.dayvidlakoni.junkyard;
+
+import java.util.Map;
+
+import android.content.Context;
+
+public class GCMServerUtilities {
+	
+	
+	static void register(final Context context, final String regId) {
+		
+	}
+	
+	static void unregister(final Context context, final String regId) {
+		
+	}
+	
+	private static void post(String endpoint, Map<String, String> params) {
+		
+	}
+}

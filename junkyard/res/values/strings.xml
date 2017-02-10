@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Junkyard</string>
+    <string name="map_settings">Map Settings</string>
+    <string name="link">http://davidmilicevic97.comyr.com/junkyard.xml</string>
+    <string name="settings">Settings</string>
+    <string name="refresh">Refresh</string>
+    <string name="marker_directions">Click here to get directions&#8230;</string>
+    <string name="location_not_available_toast">Please make your location available if you want to get directions!</string>
+
+    <!-- LocationsFragment -->
+    <string name="locationsfragment_filter">Filter locations</string>
+    <string name="locationsfragment_nearest">Find Nearest</string>
+    <string name="locationsfragment_favs">Favorites</string>
+    <string name="locationsfragment_list">Show All In List</string>
+    <string name="locationsfragment_map">Show All In Map</string>
+
+    <!-- Locations Fragment Menu -->
+    <string name="locationsfragmentmenu_settings">Locations Settings</string>
+    <string name="locationsfragmentmenu_newlocation">Suggest New Location</string>
+    <string name="locationsfragmentmenu_refresh">Refresh Locations</string>
+
+    <!-- AddNewLocationActivity -> new_location_layout -->
+    <string name="newlocation_address">Location address:</string>
+    <string name="newlocation_latitude">Location latitude:</string>
+    <string name="newlocation_longitude">Location longitude:</string>
+    <string name="newlocation_buttonSubmit">Submit</string>
+    <string name="newlocation_incorrectInput">Incorrect Input</string>
+    <string name="newlocation_addressHint">Enter Location Address&#8230;</string>
+    <string name="newlocation_latitudeHint">Enter Location Latitude&#8230;</string>
+    <string name="newLocation_longitudeHint">Enter Location Longitude&#8230;</string>
+
+    <!-- PreferencesActivity -> i sve sto sledi odatle -->
+    <string name="prefsactivity_refreshAndLocation">Refresh And Location Settings</string>
+    <string name="prefsactivity_userpreferences_autoRefreshTitle">Auto Refresh</string>
+    <string name="prefsactivity_userpreferences_autoRefreshSummary">Select to turn on/off automatic updating</string>
+    <string name="prefsactivity_userpreferences_sortByTitle">Sort locations by</string>
+    <string name="prefsactivity_userpreferences_dialogPositiveButton">OK</string>
+    <string name="prefsactivity_userpreferences_dialogNegativeButton">Cancel</string>
+    <string name="prefsactivity_help">Help</string>
+
+    <!-- DrawerActivity -->
+    <string name="draweractivity_locations">Locations</string>
+    <string name="draweractivity_notifications">Notifications</string>
+
+    <!-- map_preferences_headers.xml i sve sto sledi odatle -->
+    <string name="mapprefsheaders_zoomSettings">Zoom Settings</string>
+    <string name="mapprefsheaders_mapprefs_enableZoom">Enable Zoom Setup</string>
+    <string name="mapprefsheaders_mapprefs_setZoomLevel">Set zoom level here</string>
+    <string name="mapprefsheaders_mapprefs_zoomLevel">Zoom Level</string>
+
+    <!-- ZoomPreferencesDialog -> zoom_dialog_custom_view_layout -->
+    <string name="zoomdialog_dialogPositiveButton">OK</string>
+    <string name="zoomdialog_dialogNegativeButton">Cancel</string>
+    <string name="zoomdialog_setZoomLevel">Set Zoom Level</string>
+
+    <!-- No Internet Connection Dialog -->
+    <string name="noconnectiondialog_text">You need to have an Internet connection for the first time setup. Please, connect to the Internet, and come back later.</string>
+    <string name="noconnectiondialog_dialogPositiveButton">OK</string>
+
+    <!-- FavoritesFragment -->
+    <string name="favoritesfragment_dialogDelete">Delete from favorites</string>
+
+    <!-- LocationsListFragment -->
+    <string name="locationslistfragment_addToFavorites">Add to favorites</string>
+
+    <!-- Google Cloud Messaging -->
+    <string name="gcm_deleted">From GCM: server deleted %1$d pending messages!</string>
+
+    <!-- NotificationPreferencesActivity i sve sto sledi odatle -->
+    <string name="notificationsfragmentmenu_notifications">Notifications Settings</string>
+    <string name="notificationprefs_sound">Sound</string>
+    <string name="notificationprefs_vibration">Vibration</string>
+    <string name="notificationprefs_led">LED</string>
+    <string name="notificationprefs_soundprefs_defaultRingtone">Use default ringtone</string>
+    <string name="notificationprefs_soundprefs_selectRingtone">Select ringtone</string>
+    <string name="notificationprefs_vibrationprefs_defaultVibration">Use default vibration</string>
+    <string name="notificationprefs_vibrationprefs_vibrationPattern">Select vibration pattern</string>
+    <string name="notificationprefs_vibrationprefs_vibrationRepeating">Times repeating:</string>
+    <string name="notificationprefs_vibrationprefs_vibrationOnDuration">On duration:</string>
+    <string name="notificationprefs_vibrationprefs_vibrationOffDuration">Off duration:</string>
+    <string name="notificationprefs_vibrationprefs_dialogPositiveButton">OK</string>
+    <string name="notificationprefs_vibrationprefs_dialogNegativeButton">Cancel</string>
+    <string name="notificationprefs_vibrationprefs_dialogNeutralButton">Test</string>
+    <string name="notificationprefs_vibrationprefs_dialogIncorrectInput">You need to fill in all three EditTexts!</string>
+    <string name="notificationprefs_ledprefs_defaultLED">Use default LED</string>
+    <string name="notificationprefs_ledprefs_led">Select LED color</string>
+    <string name="notificationprefs_ledprefs_dialogNegativeButton">Cancel</string>
+
+    <!-- Bug -->
+    <string name="buglayout_bugText">What is your bug?</string>
+    <string name="buglayout_editTextHint">Bug&#8230;</string>
+    <string name="buglayout_buttonSubmitText">Submit</string>
+
+    <!-- help_preferences -->
+    <string name="helpprefs_about">About</string>
+    <string name="helpprefs_bug">Bug</string>
+    <string name="helpprefs_suggest">Suggest new location</string>
+
+    <!-- LED Preferences -->
+    <string name="ledprefs_green">Green</string>
+    <string name="ledprefs_magneta">Magneta</string>
+    <string name="ledprefs_blue">Blue</string>
+    <string name="ledprefs_orange">Orange</string>
+    <string name="ledprefs_yellow">Yellow</string>
+    <string name="ledprefs_purple">Purple</string>
+    <string name="ledprefs_red">Red</string>
+    <string name="ledprefs_cyan">Cyan</string>
+
+    <!-- Sort Locations Preference -->
+    <string name="sortprefs_addressAscending">Address ascending</string>
+    <string name="sortprefs_addressDescending">Address descending</string>
+    <string name="sortprefs_typeAscending">Type ascending</string>
+    <string name="sortprefs_typeDescending">Type descending</string>
+    <string name="sortprefs_groupByType">Group by type</string>
+
+    <!-- Lokacije tipovi -->
+    <string name="type_all">All</string>
+    <string name="type_recycling">Recycling</string>
+    <string name="type_school">School</string>
+    <string name="type_library">Library</string>
+    <string name="type_museum">Museum</string>
+    <string name="type_sportsCentre">Sports centre</string>
+    <string name="type_restaurant">Restaurant</string>
+    <string name="type_bakery">Bakery</string>
+    <string name="type_coffeeShop">Coffee shop</string>
+    <string name="type_exchangeOffice">Exchange office</string>
+    <string name="type_photocopyShop">Photocopy shop</string>
+    <string name="type_shoppingCentre">Shopping centre</string>
+    <string name="type_market">Market</string>
+    <string name="type_pharmacy">Pharmacy</string>
+    <string name="type_nightClub">Night club</string>
+
+    <!-- ostalo -->
+    <string name="reportBug">Report bug</string>
+    <string name="favoritesActivityLabel">Favorite locations</string>
+    <string name="locationsListActivityLabel">All locations</string>
+    <string name="nearestLocationsActivityLabel">Nearest locations</string>
+    <string name="showAllInMapActivityLabel">All locations</string>
+    <string name="showListItemActivityLabel">Location</string>
+    <string name="notificationActivityLabel">Notification</string>
+    <string name="send_email">Send email</string>
+    <string name="no_email_client">There is no email client installed.</string>
+    <string name="describe_bug">Please describe your bug!</string>
+    <string name="get_directions">Get directions from another app</string>
+    <string name="no_directions_app">There is no app that can find directions!</string>
+
+</resources>

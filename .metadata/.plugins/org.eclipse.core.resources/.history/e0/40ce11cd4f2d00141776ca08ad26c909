@@ -1,0 +1,8 @@
+package com.dayvidlakoni.junkyard;
+
+import android.app.Activity;
+
+// obrisi iz manifesta kad ne bude trebalo vise!!!
+public class NotificationsNotificationActivity extends Activity {
+
+}

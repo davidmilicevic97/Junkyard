@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <CheckBoxPreference
+        android:defaultValue="false"
+        android:key="PREF_AUTO_UPDATE"
+        android:summary="@string/prefsactivity_userpreferences_autoRefreshSummary"
+        android:title="@string/prefsactivity_userpreferences_autoRefreshTitle" />
+
+    <ListPreference
+        android:defaultValue="1"
+        android:dialogTitle="@string/prefsactivity_userpreferences_sortByTitle"
+        android:entries="@array/sort_locations_entries_array"
+        android:entryValues="@array/sort_locations_values_array"
+        android:key="PREF_SORT_LOCATIONS"
+        android:negativeButtonText="@string/prefsactivity_userpreferences_dialogNegativeButton"
+        android:positiveButtonText="@string/prefsactivity_userpreferences_dialogPositiveButton"
+        android:title="@string/prefsactivity_userpreferences_sortByTitle" />
+
+</PreferenceScreen>

@@ -1,0 +1,223 @@
+package com.dayvidlakoni.junkyard;
+
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.Intent;
+import android.content.res.Configuration;
+import android.graphics.Point;
+import android.os.Bundle;
+import android.view.Display;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+public class LocationsFragment extends Fragment {
+	private static int SHOW_SETTINGS = 1;
+
+	public LocationsFragment() {
+	}
+
+	// @Override
+	// public View onCreateView(LayoutInflater inflater, ViewGroup container,
+	// Bundle savedInstanceState) {
+	// View rootView = inflater.inflate(R.layout.locations_fragment, container,
+	// false);
+	//
+	// GridView gridView = (GridView) rootView.findViewById(R.id.gVLocations);
+	// gridView.setAdapter(new ImageAdapter(getActivity()));
+	//
+	// gridView.setOnItemClickListener(new OnItemClickListener() {
+	//
+	// @Override
+	// public void onItemClick(AdapterView<?> parent, View view,
+	// int position, long id) {
+	//
+	// switch (position) {
+	// case 0:
+	// Intent intent = new Intent(getActivity(),
+	// NearestLocationMap.class);
+	// startActivity(intent);
+	// break;
+	// case 2:
+	// Intent intent2 = new Intent(getActivity(),
+	// LocationsList.class);
+	// startActivity(intent2);
+	//
+	// break;
+	// default:
+	// Toast.makeText(getActivity(), "" + position,
+	// Toast.LENGTH_SHORT).show();
+	// break;
+	// }
+	//
+	// }
+	// });
+	//
+	// return rootView;
+	// }
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		setHasOptionsMenu(true);
+	}
+
+	ImageView currImageView = null;
+
+	private OnClickListener imageViewsOnClickListener = new OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+			switch (v.getId()) {
+			case R.id.imageVeiwNearest:
+
+				NearestLocationMapFragment nearestFragment = new NearestLocationMapFragment();
+				nearestFragment.setCurrentInstance(nearestFragment);
+
+				FragmentManager fmNearest = getFragmentManager();
+				FragmentTransaction nearestTransaction = fmNearest
+						.beginTransaction();
+				nearestTransaction.replace(
+						R.id.drawer_layout_fragment_container, nearestFragment);
+				nearestTransaction.addToBackStack("NearestLocationMapFragment");
+				nearestTransaction.commit();
+
+				break;
+			case R.id.imageVeiwFavs:
+
+				FavoritesFragment favsFragment = new FavoritesFragment();
+				FragmentManager fmFavs = getFragmentManager();
+				FragmentTransaction favsTransaction = fmFavs.beginTransaction();
+				favsTransaction.replace(R.id.drawer_layout_fragment_container,
+						favsFragment);
+				favsTransaction.addToBackStack("FavoritesFragment");
+				favsTransaction.commit();
+
+				break;
+			case R.id.imageVeiwList:
+
+				LocationsListFragment listFragment = new LocationsListFragment();
+				FragmentManager fmList = getFragmentManager();
+				FragmentTransaction listTransaction = fmList.beginTransaction();
+				// MORAO SAM DA ISKOMENTARISEM POSTO NE RADI NAJLEPSE BAS!
+				// transaction.setCustomAnimations(R.animator.enter_from_left,
+				// R.animator.exit_to_right, R.animator.enter_from_right,
+				// R.animator.exit_to_left);
+				listTransaction.replace(R.id.drawer_layout_fragment_container,
+						listFragment);
+				listTransaction.addToBackStack("LocationsListFragment");
+				listTransaction.commit();
+
+				break;
+			case R.id.imageVeiwMap:
+
+				ShowAllInMapFragment mapFragment = new ShowAllInMapFragment();
+				mapFragment.setCurrentInstance(mapFragment);
+
+				FragmentManager fmMap = getFragmentManager();
+				FragmentTransaction mapTransaction = fmMap.beginTransaction();
+				mapTransaction.replace(R.id.drawer_layout_fragment_container,
+						mapFragment);
+				mapTransaction.addToBackStack("ShowAllInMapFragment");
+				mapTransaction.commit();
+
+				break;
+			default:
+				Toast.makeText(getActivity(),
+						"No OnClickListener yet for this item!",
+						Toast.LENGTH_SHORT).show();
+				break;
+			}
+
+		}
+	};
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View rootView = inflater.inflate(R.layout.table_layout, container,
+				false);
+
+		WindowManager wm = (WindowManager) getActivity().getSystemService(
+				Context.WINDOW_SERVICE);
+		Display display = wm.getDefaultDisplay();
+		Point size = new Point();
+		display.getSize(size);
+
+		FrameLayout.LayoutParams imageViewParams;
+
+		if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
+			imageViewParams = new FrameLayout.LayoutParams(size.x, size.x);
+		else
+			imageViewParams = new FrameLayout.LayoutParams(size.y, size.y);
+
+		currImageView = (ImageView) rootView
+				.findViewById(R.id.imageVeiwNearest);
+		currImageView.setImageResource(R.drawable.sample_0);
+		currImageView.setLayoutParams(imageViewParams);
+		currImageView.setOnClickListener(imageViewsOnClickListener);
+		currImageView = null;
+
+		currImageView = (ImageView) rootView.findViewById(R.id.imageVeiwFavs);
+		currImageView.setImageResource(R.drawable.sample_1);
+		currImageView.setLayoutParams(imageViewParams);
+		currImageView.setOnClickListener(imageViewsOnClickListener);
+		currImageView = null;
+
+		currImageView = (ImageView) rootView.findViewById(R.id.imageVeiwList);
+		currImageView.setImageResource(R.drawable.sample_2);
+		currImageView.setLayoutParams(imageViewParams);
+		currImageView.setOnClickListener(imageViewsOnClickListener);
+		currImageView = null;
+
+		currImageView = (ImageView) rootView.findViewById(R.id.imageVeiwMap);
+		currImageView.setImageResource(R.drawable.sample_3);
+		currImageView.setLayoutParams(imageViewParams);
+		currImageView.setOnClickListener(imageViewsOnClickListener);
+		currImageView = null;
+
+		return rootView;
+	}
+
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		super.onCreateOptionsMenu(menu, inflater);
+
+		inflater.inflate(R.menu.locations_fragment_menu, menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.locations_refresh:
+			getActivity().startService(
+					new Intent(getActivity(), LocationsUpdateService.class));
+			return true;
+		case R.id.settings:
+			Intent settingsIntent = new Intent(getActivity(),
+					PreferencesActivity.class);
+			startActivityForResult(settingsIntent, SHOW_SETTINGS);
+			return true;
+		case R.id.addNew:
+			Intent intent = new Intent(getActivity(),
+					AddNewLocationActivity.class);
+			startActivity(intent);
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+
+	}
+
+}

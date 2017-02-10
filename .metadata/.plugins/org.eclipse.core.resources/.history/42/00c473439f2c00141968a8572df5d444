@@ -1,0 +1,48 @@
+package com.dayvidlakoni.junkyard;
+
+import static com.dayvidlakoni.junkyard.GCMCommonUtilities.SENDER_ID;
+
+import android.content.Context;
+import android.content.Intent;
+
+import com.google.android.gcm.GCMBaseIntentService;
+
+public class GCMIntentService extends GCMBaseIntentService {
+	
+	private static final String TAG = "GCMIntentService";
+	
+	public GCMIntentService() {
+		super();
+	}
+	
+	@Override
+	protected void onRegistered(Context arg0, String arg1) {
+
+	}
+
+	@Override
+	protected void onUnregistered(Context arg0, String arg1) {
+
+	}
+
+	@Override
+	protected void onMessage(Context arg0, Intent arg1) {
+
+	}
+
+	@Override
+	protected void onDeletedMessages(Context context, int total) {
+		
+	}
+
+	@Override
+	protected void onError(Context arg0, String arg1) {
+
+	}
+
+	@Override
+	protected boolean onRecoverableError(Context context, String errorId) {
+		return super.onRecoverableError(context, errorId);
+	}
+
+}

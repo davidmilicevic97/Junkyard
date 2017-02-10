@@ -1,0 +1,333 @@
+package com.dayvidlakoni.junkyard;
+
+import java.util.ArrayList;
+
+import org.w3c.dom.Document;
+
+import android.app.Fragment;
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Color;
+import android.location.Location;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
+
+public class NearestLocationMapFragment extends Fragment implements
+		OnMarkerClickListener, LocationUpdate.OnLocationUpdatedListener {
+
+	private static final int SHOW_SETTINGS = 1;
+
+	private NearestLocationMapFragment currInstance;
+
+	private LocationUpdate locationUpdate;
+
+	private GoogleMap map;
+	private Location location;
+	private Circle nearestCircle;
+
+	// ako je prvi put, samo onda crtam markere
+	private boolean firstLoading = true;
+
+	private Locations[] nearestLocations;
+
+	public NearestLocationMapFragment() {
+	}
+
+	public void setCurrentInstance(NearestLocationMapFragment currInstance) {
+		this.currInstance = currInstance;
+	}
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		setHasOptionsMenu(true);
+
+		nearestLocations = new Locations[5];
+
+		locationUpdate = new LocationUpdate(getActivity(), currInstance);
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+
+		View rootView = inflater.inflate(R.layout.new_map_layout, container, false);
+		
+		MapView mapView = (MapView) rootView.findViewById(R.id.map);		
+		map = mapView.getMap();
+		map.setOnMarkerClickListener(this);
+		map.setMyLocationEnabled(true);
+
+		return rootView;
+	}
+	
+	
+	
+	@Override
+	public void onDestroyView() {
+		
+		super.onDestroyView();
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+
+		locationUpdate.startUpdatingLocation();
+
+		if (location == null)
+			location = locationUpdate.getLastKnownLocation();
+		if (location != null)
+			map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(
+					location.getLatitude(), location.getLongitude()), 13));
+	}
+
+	@Override
+	public void onPause() {
+		locationUpdate.stopUpdatingLocation();
+		super.onPause();
+	}
+
+	// interface iz LocationUpdate
+	@Override
+	public void locationUpdated(Location location) {
+		this.location = location;
+		loadLocations();
+	}
+
+	private void sortNearestLocations() {
+		float[] distances = new float[5];
+		float[] currDist = new float[1];
+
+		for (int i = 0; i < 5; i++) {
+			Location.distanceBetween(location.getLatitude(),
+					location.getLongitude(), nearestLocations[i].getLatitude(),
+					nearestLocations[i].getLongitude(), currDist);
+			distances[i] = currDist[0];
+		}
+
+		for (int i = 0; i < 4; i++) {
+
+			int minIdx = i;
+
+			for (int j = i + 1; j < 5; j++) {
+				if (distances[j] < distances[minIdx])
+					minIdx = j;
+			}
+
+			if (minIdx != i) {
+				float pom = distances[i];
+				distances[i] = distances[minIdx];
+				distances[minIdx] = pom;
+
+				Locations lPom = new Locations(nearestLocations[i]);
+				nearestLocations[i] = new Locations(nearestLocations[minIdx]);
+				nearestLocations[minIdx] = new Locations(lPom);
+			}
+		}
+	}
+
+	private void loadLocations() {
+		String[] projection = new String[] { LocationsContentProvider.ID_KEY,
+				LocationsContentProvider.LATITUDE_KEY,
+				LocationsContentProvider.LONGITUDE_KEY,
+				LocationsContentProvider.ADDRESS_KEY };
+		Cursor query = getActivity().getContentResolver().query(
+				LocationsContentProvider.CONTENT_URI, projection, null, null,
+				null);
+
+		double latitude, longitude;
+		String address;
+
+		int i = 0;
+		if (query.moveToFirst()) {
+			query.moveToPrevious();
+			for (i = 0; query.moveToNext(); i++) {
+				latitude = query.getDouble(query
+						.getColumnIndex(LocationsContentProvider.LATITUDE_KEY));
+				longitude = query
+						.getDouble(query
+								.getColumnIndex(LocationsContentProvider.LONGITUDE_KEY));
+				address = query.getString(query
+						.getColumnIndex(LocationsContentProvider.ADDRESS_KEY));
+
+				if (firstLoading)
+					map.addMarker(new MarkerOptions()
+							.position(new LatLng(latitude, longitude))
+							.title(address).alpha(0.7f));
+
+				// ovo je za najblize lokacije
+				if (i < 5) {
+					nearestLocations[i] = new Locations(latitude, longitude);
+				} else {
+					if (i == 5) {
+						sortNearestLocations();
+					}
+
+					int j;
+					float[] nearestResult = new float[1];
+					float[] currResult = new float[1];
+					for (j = 4; j > -1; j--) {
+						Location.distanceBetween(location.getLatitude(),
+								location.getLongitude(),
+								nearestLocations[j].getLatitude(),
+								nearestLocations[j].getLongitude(),
+								nearestResult);
+						Location.distanceBetween(location.getLatitude(),
+								location.getLongitude(), latitude, longitude,
+								currResult);
+
+						if (currResult[0] >= nearestResult[0])
+							break;
+					}
+
+					if (j == 4)
+						continue;
+
+					for (int k = 4; k > j + 1; k--)
+						nearestLocations[k] = new Locations(
+								nearestLocations[k - 1]);
+					nearestLocations[j + 1] = new Locations(latitude, longitude);
+				}
+			}
+		}
+		firstLoading = false;
+		query.close();
+
+		// nasao sam najblize lokacije, sad treba da nacrtam krug
+		float[] maxDist = new float[1];
+		int lastIdx = Math.min(i, 4); // ako ima manje od 5 lokacija
+		Location.distanceBetween(location.getLatitude(),
+				location.getLongitude(),
+				nearestLocations[lastIdx].getLatitude(),
+				nearestLocations[lastIdx].getLongitude(), maxDist);
+
+		for (int x = 0; x < 5; x++)
+			Log.d("NEAREST_LOCATIONS " + (x + 1),
+					"Lat: " + nearestLocations[x].getLatitude() + " / Lng: "
+							+ nearestLocations[x].getLongitude());
+
+		if (nearestCircle != null)
+			nearestCircle.remove();
+		nearestCircle = map.addCircle(new CircleOptions()
+				.center(new LatLng(location.getLatitude(), location
+						.getLongitude())).radius(maxDist[0])
+				.strokeColor(Color.RED).fillColor(Color.TRANSPARENT)
+				.strokeWidth(1));
+
+		// da bi se svih 5 lokacija videlo na mapi
+		LatLng point = new LatLng(nearestLocations[0].getLatitude(),
+				nearestLocations[0].getLongitude());
+		LatLngBounds bounds = new LatLngBounds(point, point);
+		bounds = bounds.including(new LatLng(nearestLocations[1].getLatitude(),
+				nearestLocations[1].getLongitude()));
+		bounds = bounds.including(new LatLng(nearestLocations[2].getLatitude(),
+				nearestLocations[2].getLongitude()));
+		bounds = bounds.including(new LatLng(nearestLocations[3].getLatitude(),
+				nearestLocations[3].getLongitude()));
+		bounds = bounds.including(new LatLng(nearestLocations[4].getLatitude(),
+				nearestLocations[4].getLongitude()));
+		map.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 30));
+	}
+
+	@Override
+	public boolean onMarkerClick(Marker marker) {
+		marker.showInfoWindow();
+
+		double latitude = marker.getPosition().latitude;
+		double longitude = marker.getPosition().longitude;
+
+		LatLng fromPosition = new LatLng(location.getLatitude(),
+				location.getLongitude());
+		LatLng toPosition = new LatLng(latitude, longitude);
+
+		GMapDirection md = new GMapDirection();
+		Document doc = md.getDocument(fromPosition, toPosition,
+				GMapDirection.MODE_WALKING);
+
+		if (doc != null) {
+			ArrayList<LatLng> directionPoint = md.getDirection(doc);
+			PolylineOptions rectLine = new PolylineOptions().width(3).color(
+					Color.RED);
+			Log.d("jbg teo je", "jbg teo je");
+			for (int i = 0; i < directionPoint.size(); i++) {
+				rectLine.add(directionPoint.get(i));
+			}
+			map.addPolyline(rectLine);
+		} else {
+			Log.d("jbg nije teo", "jbg nije teo");
+		}
+
+		final LatLngBounds bounds = new LatLngBounds(new LatLng(Math.min(
+				fromPosition.latitude, toPosition.latitude), Math.min(
+				fromPosition.longitude, toPosition.longitude)), new LatLng(
+				Math.max(fromPosition.latitude, toPosition.latitude), Math.max(
+						fromPosition.longitude, toPosition.longitude)));
+
+		map.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 30));
+
+		return true;
+	}
+
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		super.onCreateOptionsMenu(menu, inflater);
+		inflater.inflate(R.menu.map_menu, menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.MapMenuSettings:
+			Intent settingsIntent = new Intent(getActivity(),
+					MapPreferencesActivity.class);
+			startActivityForResult(settingsIntent, SHOW_SETTINGS);
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+
+	}
+
+	private class Locations {
+		private double latitude, longitude;
+
+		public Locations(double latitude, double longitude) {
+			this.latitude = latitude;
+			this.longitude = longitude;
+		}
+
+		public Locations(Locations location) {
+			latitude = location.getLatitude();
+			longitude = location.getLongitude();
+		}
+
+		public double getLatitude() {
+			return latitude;
+		}
+
+		public double getLongitude() {
+			return longitude;
+		}
+	}
+}

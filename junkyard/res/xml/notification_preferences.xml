@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="@string/notificationprefs_sound" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="PREF_NOTIFICATION_DEFAULT_RINGTONE"
+            android:title="@string/notificationprefs_soundprefs_defaultRingtone" />
+
+        <RingtonePreference
+            android:key="PREF_NOTIFICATION_RINGTONE"
+            android:showDefault="false"
+            android:showSilent="false"
+            android:title="@string/notificationprefs_soundprefs_selectRingtone" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/notificationprefs_vibration" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="PREF_NOTIFICATION_DEFAULT_VIBRATION"
+            android:title="@string/notificationprefs_vibrationprefs_defaultVibration" />
+
+        <Preference
+            android:key="PREF_NOTIFICATION_VIBRATION"
+            android:title="@string/notificationprefs_vibrationprefs_vibrationPattern" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/notificationprefs_led" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="PREF_NOTIFICATION_DEFAULT_LED"
+            android:title="@string/notificationprefs_ledprefs_defaultLED" />
+
+        <ListPreference
+            android:defaultValue="#ff00ff00"
+            android:dialogTitle="@string/notificationprefs_ledprefs_led"
+            android:entries="@array/led_preferences_entries_array"
+            android:entryValues="@array/led_preferences_values_array"
+            android:key="PREF_NOTIFICATION_LED"
+            android:negativeButtonText="@string/notificationprefs_ledprefs_dialogNegativeButton"
+            android:title="@string/notificationprefs_ledprefs_led" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

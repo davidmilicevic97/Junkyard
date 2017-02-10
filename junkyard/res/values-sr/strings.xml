@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Smetilište</string>
+    <string name="map_settings">Podešavanja mape</string>
+    <string name="link">http://davidmilicevic97.comyr.com/junkyard.xml</string>
+    <string name="settings">Podešavanja</string>
+    <string name="refresh">Osveži</string>
+    <string name="marker_directions">Kliknite ovde da biste dobili uputstva&#8230;</string>
+    <string name="location_not_available_toast">Molimo vas da omogućite pristup Vašoj lokaciji ako želite da dobijete uputstva!</string>
+
+    <!-- LocationsFragment -->
+    <string name="locationsfragment_filter">Izaberi vrste lokacija</string>
+    <string name="locationsfragment_nearest">Pronađi najbliže</string>
+    <string name="locationsfragment_favs">Omiljene</string>
+    <string name="locationsfragment_list">Prikaži sve u listi</string>
+    <string name="locationsfragment_map">Prikaži sve u mapi</string>
+
+    <!-- Locations Fragment Menu -->
+    <string name="locationsfragmentmenu_settings">Podešavanja lokacije</string>
+    <string name="locationsfragmentmenu_newlocation">Predloži novu lokaciju</string>
+    <string name="locationsfragmentmenu_refresh">Osveži lokacije</string>
+
+    <!-- AddNewLocationActivity -> new_location_layout -->
+    <string name="newlocation_address">Adresa:</string>
+    <string name="newlocation_latitude">Geografska širina:</string>
+    <string name="newlocation_longitude">Geografska dužina:</string>
+    <string name="newlocation_buttonSubmit">Pošalji</string>
+    <string name="newlocation_incorrectInput">Pogrešan unos</string>
+    <string name="newlocation_addressHint">Unesi adresu ovde&#8230;</string>
+    <string name="newlocation_latitudeHint">Unesi širinu ovde&#8230;</string>
+    <string name="newLocation_longitudeHint">Unesi dužinu ovde&#8230;</string>
+
+    <!-- PreferencesActivity -> i sve sto sledi odatle -->
+    <string name="prefsactivity_refreshAndLocation">Osvežavanje i lokacije</string>
+    <string name="prefsactivity_userpreferences_autoRefreshTitle">Automatski osveži</string>
+    <string name="prefsactivity_userpreferences_autoRefreshSummary">Izaberi da bi uključio/isključio automatsko osvežavanje</string>
+    <string name="prefsactivity_userpreferences_sortByTitle">Sortiraj lokacije po</string>
+    <string name="prefsactivity_userpreferences_dialogPositiveButton">OK</string>
+    <string name="prefsactivity_userpreferences_dialogNegativeButton">Odustani</string>
+    <string name="prefsactivity_help">Pomoć</string>
+
+    <!-- DrawerActivity -->
+    <string name="draweractivity_locations">Lokacije</string>
+    <string name="draweractivity_notifications">Obaveštenja</string>
+
+    <!-- map_preferences_headers.xml i sve sto sledi odatle -->
+    <string name="mapprefsheaders_zoomSettings">Zumiranje</string>
+    <string name="mapprefsheaders_mapprefs_enableZoom">Omogući podešavanje zumiranja</string>
+    <string name="mapprefsheaders_mapprefs_setZoomLevel">Podesi nivo zumiranja ovde</string>
+    <string name="mapprefsheaders_mapprefs_zoomLevel">Nivo zumiranja</string>
+
+    <!-- ZoomPreferencesDialog -> zoom_dialog_custom_view_layout -->
+    <string name="zoomdialog_dialogPositiveButton">OK</string>
+    <string name="zoomdialog_dialogNegativeButton">Odustani</string>
+    <string name="zoomdialog_setZoomLevel">Podesi nivo zumiranja</string>
+
+    <!-- No Internet Connection Dialog -->
+    <string name="noconnectiondialog_text">Morate da imate pristup internetu za prvo pokretanje aplikacije. Molimo Vas, da se vratite kada se povežete na internet.</string>
+    <string name="noconnectiondialog_dialogPositiveButton">OK</string>
+
+    <!-- FavoritesFragment -->
+    <string name="favoritesfragment_dialogDelete">Izbriši iz omiljenih</string>
+
+    <!-- LocationsListFragment -->
+    <string name="locationslistfragment_addToFavorites">Dodaj u omiljene</string>
+
+    <!-- Google Cloud Messaging -->
+    <string name="gcm_deleted">From GCM: server deleted %1$d pending messages!</string>
+
+    <!-- NotificationPreferencesActivity i sve sto sledi odatle -->
+    <string name="notificationsfragmentmenu_notifications">Obaveštenja</string>
+    <string name="notificationprefs_sound">Zvuk</string>
+    <string name="notificationprefs_vibration">Vibracija</string>
+    <string name="notificationprefs_led">LED svetlo</string>
+    <string name="notificationprefs_soundprefs_defaultRingtone">Koristi uobičajen ton</string>
+    <string name="notificationprefs_soundprefs_selectRingtone">Izaberi ton</string>
+    <string name="notificationprefs_vibrationprefs_defaultVibration">Koristi uobičajenu vibraciju</string>
+    <string name="notificationprefs_vibrationprefs_vibrationPattern">Izaberi šablon za vibriranje</string>
+    <string name="notificationprefs_vibrationprefs_vibrationRepeating">Broj ponavljanja:</string>
+    <string name="notificationprefs_vibrationprefs_vibrationOnDuration">Trajanje vibracije:</string>
+    <string name="notificationprefs_vibrationprefs_vibrationOffDuration">Trajanje pauze:</string>
+    <string name="notificationprefs_vibrationprefs_dialogPositiveButton">OK</string>
+    <string name="notificationprefs_vibrationprefs_dialogNegativeButton">Odustani</string>
+    <string name="notificationprefs_vibrationprefs_dialogNeutralButton">Testiraj</string>
+    <string name="notificationprefs_vibrationprefs_dialogIncorrectInput">Morate da popunite sva tri polja!</string>
+    <string name="notificationprefs_ledprefs_defaultLED">Koristi uobičajeno LED svetlo</string>
+    <string name="notificationprefs_ledprefs_led">Izaberi boju LED svetla</string>
+    <string name="notificationprefs_ledprefs_dialogNegativeButton">Odustani</string>
+
+    <!-- Bug -->
+    <string name="buglayout_bugText">Koju grešku ste Vi primetili?</string>
+    <string name="buglayout_editTextHint">Greška&#8230;</string>
+    <string name="buglayout_buttonSubmitText">Pošalji</string>
+
+    <!-- help_preferences -->
+    <string name="helpprefs_about">Više o</string>
+    <string name="helpprefs_bug">Greška</string>
+    <string name="helpprefs_suggest">Predloži novu lokaciju</string>
+
+    <!-- LED Preferences -->
+    <string name="ledprefs_green">Zelena</string>
+    <string name="ledprefs_magneta">Magneta</string>
+    <string name="ledprefs_blue">Plava</string>
+    <string name="ledprefs_orange">Narandžasta</string>
+    <string name="ledprefs_yellow">Žuta</string>
+    <string name="ledprefs_purple">Ljubičasta</string>
+    <string name="ledprefs_red">Crvena</string>
+    <string name="ledprefs_cyan">Cyan</string>
+
+    <!-- Sort Locations Preference -->
+    <string name="sortprefs_addressAscending">Adresi rastuće</string>
+    <string name="sortprefs_addressDescending">Adresi opadajuće</string>
+    <string name="sortprefs_typeAscending">Tipu rastuće</string>
+    <string name="sortprefs_typeDescending">Tipu opadajuće</string>
+    <string name="sortprefs_groupByType">Grupiši po tipu lokacije</string>
+
+    <!-- Lokacije tipovi -->
+    <string name="type_all">Sve vrste</string>
+    <string name="type_recycling">Reciklaža</string>
+    <string name="type_school">Škola</string>
+    <string name="type_library">Biblioteka</string>
+    <string name="type_museum">Muzej</string>
+    <string name="type_sportsCentre">Sportski centar</string>
+    <string name="type_restaurant">Restoran</string>
+    <string name="type_bakery">Pekara</string>
+    <string name="type_coffeeShop">Kafić</string>
+    <string name="type_exchangeOffice">Menjačnica</string>
+    <string name="type_photocopyShop">Kopirnica</string>
+    <string name="type_shoppingCentre">Šoping centar</string>
+    <string name="type_market">Prodavnica</string>
+    <string name="type_pharmacy">Apoteka</string>
+    <string name="type_nightClub">Noćni klub</string>
+
+    <!-- ostalo -->
+    <string name="reportBug">Prijavi grešku</string>
+    <string name="favoritesActivityLabel">Omiljene lokacije</string>
+    <string name="locationsListActivityLabel">Sve lokacije</string>
+    <string name="nearestLocationsActivityLabel">Najbliže lokacije</string>
+    <string name="showAllInMapActivityLabel">Sve lokacije</string>
+    <string name="showListItemActivityLabel">Lokacija</string>
+    <string name="notificationActivityLabel">Obaveštenje</string>
+    <string name="send_email">Pošalji e-mail</string>
+    <string name="no_email_client">Nemate instaliranu aplikaciju koja može da šalje e-mail.</string>
+    <string name="describe_bug">Molimo Vas opišite detaljnije!</string>
+    <string name="get_directions">Uputstva iz drugih aplikacija</string>
+    <string name="no_directions_app">Nemate instaliranu aplikaciju koja može da pronađe uputstva!</string>
+
+</resources>

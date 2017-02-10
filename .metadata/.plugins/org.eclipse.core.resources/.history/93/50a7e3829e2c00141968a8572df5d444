@@ -1,0 +1,5 @@
+package com.dayvidlakoni.junkyard;
+
+public class GCMIntentService extends GCMBaseIntentService {
+
+}

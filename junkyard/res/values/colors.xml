@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ff0cb317 ff099313 ff3dff17 -->
+    <color name="green">#ff0cb317</color>
+    <color name="transparent_green">#aa0cb317</color>
+    <color name="beige">#fffffec9</color>
+    <color name="blue">#ff475b80</color>
+    <color name="transparent_blue">#aa475b80</color>
+
+</resources>

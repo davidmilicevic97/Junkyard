@@ -1,0 +1,10 @@
+package com.dayvidlakoni.junkyard;
+
+public class GCMCommonUtilities {
+	
+	static final String SERVER_URL = "";
+	static final String SENDER_ID = "757496274673";
+	
+	static final String EXTRA_MESSAGE = "message";
+	
+}

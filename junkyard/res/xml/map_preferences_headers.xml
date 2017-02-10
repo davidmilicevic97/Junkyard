@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<preference-headers xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <header
+        android:fragment="com.dayvidlakoni.junkyard.MapPreferencesFragment"
+        android:summary="@string/mapprefsheaders_zoomSettings"
+        android:title="@string/mapprefsheaders_zoomSettings" />
+
+</preference-headers>

@@ -1,0 +1,8 @@
+INDEX VERSION 1.127+C:\Users\ZMAJ\OVO JE FINALNI WORKSPACE\.metadata\.plugins\org.eclipse.jdt.core
+2458083869.index
+4273787903.index
+1394801298.index
+1951110359.index
+848856923.index
+3382650436.index
+1509703025.index

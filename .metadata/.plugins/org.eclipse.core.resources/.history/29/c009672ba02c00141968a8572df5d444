@@ -1,0 +1,15 @@
+package com.dayvidlakoni.junkyard;
+
+import android.content.Context;
+
+public class GCMServerUtilities {
+	
+	
+	static void register(final Context context, String regId) {
+		
+	}
+	
+	static void unregister(final Context context, final String regId) {
+		
+	}
+}

@@ -1,0 +1,32 @@
+package com.dayvidlakoni.junkyard;
+
+import static com.dayvidlakoni.junkyard.GCMCommonUtilities.SERVER_URL;
+import java.util.Map;
+import java.util.Random;
+
+import android.content.Context;
+import android.util.Log;
+
+public class GCMServerUtilities {
+
+	private static final String TAG = "GCMServerUtilities";
+
+	private static final int MAX_ATTEMPTS = 5;
+	private static final int BACKOFF_MILLI_SECONDS = 2000;
+	private static final Random random = new Random();
+
+	static void register(final Context context, final String regId) {
+		Log.i(TAG, "registering device (regId = " + regId + ")");
+		
+		String serverUrl = SERVER_URL;
+		
+	}
+
+	static void unregister(final Context context, final String regId) {
+
+	}
+
+	private static void post(String endpoint, Map<String, String> params) {
+
+	}
+}

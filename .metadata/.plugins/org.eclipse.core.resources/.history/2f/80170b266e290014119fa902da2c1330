@@ -1,0 +1,11 @@
+package com.dayvidlakoni.junkyard;
+
+import android.app.DialogFragment;
+
+public class LocationsListDialog extends DialogFragment {
+	
+	public interface OnAddToFavoritesClickedListener {
+		public void onAddToFavoritesClicked(long id);
+	};
+	
+}

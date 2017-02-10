@@ -1,0 +1,7 @@
+package com.dayvidlakoni.junkyard;
+
+import com.google.android.gcm.GCMBaseIntentService;
+
+public class GCMIntentService extends GCMBaseIntentService {
+
+}

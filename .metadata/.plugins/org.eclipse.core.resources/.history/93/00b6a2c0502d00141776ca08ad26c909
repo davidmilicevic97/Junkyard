@@ -1,0 +1,21 @@
+package com.dayvidlakoni.junkyard;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.widget.TextView;
+
+// obrisi iz manifesta kad ne bude trebalo vise!!!
+public class NotificationsNotificationActivity extends Activity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.notifications_fragment_item);
+		
+		TextView time = (TextView) findViewById(R.id.tvNotificationTime);
+		TextView title = (TextView) findViewById(R.id.tvNotificationTitle);
+		TextView text = (TextView) findViewById(R.id.tvNotificationText);
+	}
+	
+	
+}

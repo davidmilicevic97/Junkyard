@@ -1,0 +1,13 @@
+package com.dayvidlakoni.junkyard;
+
+import android.app.Fragment;
+
+public class TabletLocationsFragment extends Fragment {
+
+	public TabletLocationsFragment() {
+	}
+	
+	
+	
+	
+}

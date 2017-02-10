@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<preference-headers xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <header
+        android:fragment="com.dayvidlakoni.junkyard.UserPreferencesFragment"
+        android:title="@string/prefsactivity_refreshAndLocation" />
+    <header
+        android:fragment="com.dayvidlakoni.junkyard.MapPreferencesFragment"
+        android:title="@string/mapprefsheaders_zoomSettings" />
+    <header
+        android:fragment="com.dayvidlakoni.junkyard.NotificationPreferencesFragment"
+        android:title="@string/notificationsfragmentmenu_notifications" />
+    <header
+        android:fragment="com.dayvidlakoni.junkyard.HelpPreferencesFragment"
+        android:title="@string/prefsactivity_help" />
+
+</preference-headers>

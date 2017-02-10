@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<preference-headers xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <header
+        android:fragment="com.dayvidlakoni.junkyard.NotificationSoundPreferencesFragment"
+        android:title="@string/notificationprefs_sound" />
+    <header
+        android:fragment="com.dayvidlakoni.junkyard.NotificationVibrationPreferencesFragment"
+        android:title="@string/notificationprefs_vibration" />
+    <header
+        android:fragment="com.dayvidlakoni.junkyard.NotificationLEDPreferencesFragment"
+        android:title="@string/notificationprefs_led" />
+
+</preference-headers>

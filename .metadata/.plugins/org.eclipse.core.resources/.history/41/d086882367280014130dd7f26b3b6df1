@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">junkyard</string>
+    <string name="map_settings">Map Settings</string>
+    <string name="link">http://davidmilicevic97.comyr.com/junkyard.xml</string>
+
+    <!-- LocationsFragment -->
+    <string name="locationsfragment_nearest">Find Nearest</string>
+    <string name="locationsfragment_favs">Favourites</string>
+    <string name="locationsfragment_list">Show All In List</string>
+    <string name="locationsfragment_map">Show All In Map</string>
+
+    <!-- Locations Fragment Menu -->
+    <string name="locationsfragmentmenu_settings">Settings</string>
+    <string name="locationsfragmentmenu_newlocation">Suggest New Location</string>
+    <string name="locationsfragmentmenu_refresh">Refresh Locations</string>
+
+    <!-- AddNewLocationActivity -> new_location_layout -->
+    <string name="newlocation_address">Location address:</string>
+    <string name="newlocation_latitude">Location latitude:</string>
+    <string name="newlocation_longitude">Location longitude</string>
+    <string name="newlocation_buttonSubmit">Submit</string>
+    <string name="newlocation_incorrectInput">Incorrect Input</string>
+    <string name="newlocation_addressHint">Enter Location Address...</string>
+	<string name="newlocation_latitudeHint">Enter Location Latitude...</string>
+	<string name="">Enter Location Longitude...</string>
+	
+    <!-- PreferencesActivity -> i sve sto sledi odatle -->
+    <string name="prefsactivity_refreshAndLocation">Refresh And Location Settings</string>
+    <string name="prefsactivity_userpreferences_autoRefreshTitle">Auto Refresh</string>
+    <string name="prefsactivity_userpreferences_autoRefreshSummary">Select to turn on/off automatic updating</string>
+    <string name="prefsactivity_userpreferences_connectionMethodTitle">Connection Method</string>
+    <string name="prefsactivity_userpreferences_dialogPositiveButton">OK</string>
+    <string name="prefsactivity_userpreferences_dialogNegativeButton">Cancel</string>
+
+    <!-- DrawerActivity -->
+    <string name="draweractivity_locations">Locations</string>
+    <string name="draweractivity_notifications">Notifications</string>
+
+    <!-- map_preferences_headers.xml i sve sto sledi odatle -->
+    <string name="mapprefsheaders_zoomSettings">Zoom Settings</string>
+    <string name="mapprefsheaders_mapprefs_enableZoom">Enable Zoom Setup</string>
+    <string name="mapprefsheaders_mapprefs_setZoomLevel">Set zoom level here</string>
+    <string name="mapprefsheaders_mapprefs_zoomLevel">Zoom Level</string>
+
+    <!-- ZoomPreferencesDialog -> zoom_dialog_custom_view_layout -->
+    <string name="zoomdialog_dialogPositiveButton">OK</string>
+    <string name="zoomdialog_dialogNegativeButton">Cancel</string>
+    <string name="zoomdialog_setZoomLevel">Set Zoom Level</string>
+
+    <!-- No Internet Connection Dialog -->
+    <string name="noconnectiondialog_text">You need to have an Internet connection for the first time setup. Please, connect to the Internet, and come back later.</string>
+    <string name="noconnectiondialog_dialogPositiveButton">OK</string>
+
+</resources>

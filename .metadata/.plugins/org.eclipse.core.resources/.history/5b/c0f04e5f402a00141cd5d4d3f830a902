@@ -1,0 +1,246 @@
+package com.dayvidlakoni.junkyard;
+
+import java.util.ArrayList;
+
+import org.w3c.dom.Document;
+
+import android.app.Fragment;
+import android.content.ContentValues;
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Color;
+import android.location.Location;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ToggleButton;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
+
+public class ShowLocationListItemFragment extends Fragment implements
+		OnMarkerClickListener, LocationUpdate.OnLocationUpdatedListener {
+
+	private static final int SHOW_SETTINGS = 1;
+
+	private MapView mapView;
+	private GoogleMap map;
+	public static String LOCATION_LATITUDE = "LOCATION_LATITUDE";
+	public static String LOCATION_ADDRESS = "LOCATION_ADDRESS";
+	public static String LOCATION_LONGITUDE = "LOCATION_LONGITUDE";
+
+	private ShowLocationListItemFragment currInstance;
+
+	private LocationUpdate locationUpdate;
+	private Location location;
+
+	private double latitude, longitude;
+	private String address;
+
+	private boolean isFavorite;
+	private long id;
+	private ToggleButton tbFav;
+
+	public ShowLocationListItemFragment(long id, boolean isFavorite) {
+		this.id = id;
+		this.isFavorite = isFavorite;
+	}
+
+	public void setCurrentInstance(ShowLocationListItemFragment currInstance) {
+		this.currInstance = currInstance;
+	}
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		setHasOptionsMenu(true);
+
+		locationUpdate = new LocationUpdate(getActivity(), currInstance);
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View rootView = inflater.inflate(R.layout.map_layout, container, false);
+
+		latitude = getArguments().getDouble(LOCATION_LATITUDE);
+		longitude = getArguments().getDouble(LOCATION_LONGITUDE);
+		address = getArguments().getString(LOCATION_ADDRESS);
+
+		try {
+			MapsInitializer.initialize(getActivity());
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+		}
+
+		mapView = (MapView) rootView.findViewById(R.id.map);
+		mapView.onCreate(savedInstanceState);
+
+		map = mapView.getMap();
+		map.setOnMarkerClickListener(this);
+		map.setMyLocationEnabled(true);
+		map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(
+				latitude, longitude), 13));
+		map.addMarker(new MarkerOptions()
+				.position(new LatLng(latitude, longitude)).title(address)
+				.alpha(0.7f));
+
+		tbFav = (ToggleButton) rootView.findViewById(R.id.tbFavorite);
+		tbFav.setChecked(isFavorite);
+
+		return rootView;
+	}
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		mapView.onDestroy();
+
+		if (isFavorite != tbFav.isChecked()) {
+			if (isFavorite) // ako je bio favorite, sad vise nije
+				removeFromFavorites();
+			else
+				addToFavorites(); // u suprotnom, dodat je u favorites
+		}
+	}
+
+	private void addToFavorites() {
+		String where = LocationsContentProvider.ID_KEY + "=" + id;
+		Cursor query = getActivity().getContentResolver().query(
+				LocationsContentProvider.CONTENT_URI, null, where, null, null);
+
+		if (query.moveToFirst() == false) {
+			Log.d("ShowLocationListItemFragment - FAVORITE CHANGED",
+					"No results for query");
+		} else {
+
+			ContentValues values = new ContentValues();
+			values.put(
+					LocationsContentProvider.ADDRESS_KEY,
+					query.getString(query
+							.getColumnIndex(LocationsContentProvider.ADDRESS_KEY)));
+			values.put(
+					LocationsContentProvider.LOCATION_KEY,
+					query.getString(query
+							.getColumnIndex(LocationsContentProvider.LOCATION_KEY)));
+			values.put(
+					LocationsContentProvider.LATITUDE_KEY,
+					query.getDouble(query
+							.getColumnIndex(LocationsContentProvider.LATITUDE_KEY)));
+			values.put(
+					LocationsContentProvider.LONGITUDE_KEY,
+					query.getDouble(query
+							.getColumnIndex(LocationsContentProvider.LONGITUDE_KEY)));
+			values.put(LocationsContentProvider.FAVORITES_KEY, 1);
+
+			getActivity().getContentResolver().update(
+					LocationsContentProvider.CONTENT_URI, values, where, null);
+
+		}
+		query.close();
+	}
+
+	private void removeFromFavorites() {
+
+	}
+
+	@Override
+	public void onLowMemory() {
+		super.onLowMemory();
+		mapView.onLowMemory();
+	}
+
+	@Override
+	public void onResume() {
+		mapView.onResume();
+
+		locationUpdate.startUpdatingLocation();
+
+		// za svaki slucaj
+		if (location == null)
+			location = locationUpdate.getLastKnownLocation();
+
+		super.onResume();
+	}
+
+	@Override
+	public void onPause() {
+		locationUpdate.stopUpdatingLocation();
+		super.onPause();
+	}
+
+	@Override
+	public void locationUpdated(Location location) {
+		this.location = location;
+	}
+
+	@Override
+	public boolean onMarkerClick(Marker mark) {
+		mark.showInfoWindow();
+
+		LatLng fromPosition = new LatLng(location.getLatitude(),
+				location.getLongitude());
+		LatLng toPosition = new LatLng(latitude, longitude);
+
+		GMapDirection md = new GMapDirection();
+		Document doc = md.getDocument(fromPosition, toPosition,
+				GMapDirection.MODE_WALKING);
+
+		if (doc != null) {
+			ArrayList<LatLng> directionPoint = md.getDirection(doc);
+			PolylineOptions rectLine = new PolylineOptions().width(3).color(
+					Color.RED);
+			Log.d("jbg teo je", "jbg teo je");
+			for (int i = 0; i < directionPoint.size(); i++) {
+				rectLine.add(directionPoint.get(i));
+			}
+			map.addPolyline(rectLine);
+		} else {
+			Log.d("jbg nije teo", "jbg nije teo");
+		}
+
+		final LatLngBounds bnds = new LatLngBounds(new LatLng(Math.min(
+				fromPosition.latitude, toPosition.latitude), Math.min(
+				fromPosition.longitude, toPosition.longitude)), new LatLng(
+				Math.max(fromPosition.latitude, toPosition.latitude), Math.max(
+						fromPosition.longitude, toPosition.longitude)));
+
+		map.moveCamera(CameraUpdateFactory.newLatLngBounds(bnds, 30));
+		return true;
+	}
+
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		super.onCreateOptionsMenu(menu, inflater);
+		inflater.inflate(R.menu.map_menu, menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.MapMenuSettings:
+			Intent settingsIntent = new Intent(getActivity(),
+					MapPreferencesActivity.class);
+			startActivityForResult(settingsIntent, SHOW_SETTINGS);
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+
+}

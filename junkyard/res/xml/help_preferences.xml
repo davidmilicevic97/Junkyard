@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <Preference
+        android:key="HELP_PREFS_ABOUT"
+        android:title="@string/helpprefs_about" />
+    <Preference
+        android:key="HELP_PREFS_BUG"
+        android:title="@string/helpprefs_bug" />
+    <Preference
+        android:key="HELP_PREFS_SUGGEST"
+        android:title="@string/helpprefs_suggest" />
+
+</PreferenceScreen>
